@@ -36,7 +36,7 @@ void windowTest() {
 
 
 
-  LMesh mesh(3*3*2);
+  Mesh mesh(3*3*2);
   
   mesh.apply<Vec3f, Color32f>([](auto& m) {
     m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
@@ -58,8 +58,8 @@ void windowTest() {
     win.update();    
      
     // Draw the triangle !
-    glDrawArrays(GL_TRIANGLES, 0, 3); 
-    // mesh.sendData();
+    // glDrawArrays(GL_TRIANGLES, 0, 3); 
+    mesh.sendData();
 
     cnt->swapBuffer();
   }
