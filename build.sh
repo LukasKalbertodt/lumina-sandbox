@@ -1,9 +1,9 @@
 clear
 cd lumina
-make -j8 ASAN=1 CXX=g++ INCLUDE_PATH=-I../libs/glfw/include
+make -j8 ASAN=1 CPLUS_INCLUDE_PATH=../libs/glfw/include
 cd ..
 make clean
-make -j8 ASAN=1 CXX=g++ test.bin
+make -j8 ASAN=1 test.bin
 echo "----------------------------------------"
 echo ""
-optirun ./test.bin
+./test.bin

@@ -6,3 +6,5 @@ test
 
 lumina/lumina.a
 lumina/obj
+
+libs/*.a
