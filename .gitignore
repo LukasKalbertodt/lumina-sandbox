@@ -8,3 +8,4 @@ lumina/lumina.a
 lumina/obj
 
 libs/*.a
+libs/glew-1.10.0
