@@ -1,5 +1,6 @@
 # building GLEW
 wget -O glew-1.10.0.zip http://sourceforge.net/projects/glew/files/glew/1.10.0/glew-1.10.0.zip/download
+rm -rf glew-1.10.0
 unzip glew-1.10.0.zip
 rm glew-1.10.0.zip
 cd glew-1.10.0
