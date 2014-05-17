@@ -1,9 +1,9 @@
 EXAMPLE_CPP := $(wildcard example/*.cpp)
 EXAMPLE_OUT := $(EXAMPLE_CPP:example/%.cpp=%.bin)
 
-CXXFLAGS := -Wall -std=c++1y -I.
+CXXFLAGS := -Wall -std=c++1y -I. -Ilibs/glfw/include
 CXX := clang++
-LDFLAGS := -Llibs -lGLEW -lglfw3 -lXi -lXrandr
+LDFLAGS := -Llibs -lglfw3 -lGL -lGLU -lX11 -lXxf86vm -lXi -lXrandr -lGLEW -lpthread
 
 ifeq ($(RELEASE),1)
   CXXFLAGS += -O3
