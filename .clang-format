@@ -21,7 +21,7 @@ DerivePointerBinding: false
 ExperimentalAutoDetectBinPacking: false
 IndentCaseLabels: true
 MaxEmptyLinesToKeep: 4
-NamespaceIndentation: None
+NamespaceIndentation: Inner
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PenaltyBreakBeforeFirstCallParameter: 200

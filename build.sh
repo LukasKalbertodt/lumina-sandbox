@@ -1,4 +1,5 @@
 clear
+clear
 cd lumina
 make -j8 ASAN=1 CPLUS_INCLUDE_PATH=../libs/glfw/include
 cd ..
