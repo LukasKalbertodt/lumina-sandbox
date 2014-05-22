@@ -18,7 +18,7 @@ int main() {
 void windowTest() {
   bool run = true;
 
-  LWindow win("Hai :3");
+  Window win("Hai :3");
   win.setVersionHint(3, 3);
   win.setVSync(true);
   // win.setVersionHint(1, 1);
@@ -49,9 +49,9 @@ void windowTest() {
 
 
   // Shader tests
-  LShader<LShaderType::Vertex> vs;
+  Shader<ShaderType::Vertex> vs;
   vs.compile(loadShaderFromFile("shader/test.vsh"));
-  LShader<LShaderType::Fragment> fs;
+  Shader<ShaderType::Fragment> fs;
   fs.compile(loadShaderFromFile("shader/test.fsh"));
   // PipelineContainer p(vs, fs);
   // p.use();
