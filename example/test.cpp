@@ -56,7 +56,7 @@ void windowTest() {
   // PipelineContainer p(vs, fs);
   // p.use();
   Program p;
-  p.link(vs, fs);
+  p.create(vs, fs);
   // p.use();
   // p.setUniform("mul", 0.5f);
 
@@ -70,10 +70,14 @@ void windowTest() {
     float val
       = (chrono::duration_cast<chrono::milliseconds>(diff).count() / 1000.f);
 
-    cnt->execute(p, [&](HotProgram& hot) {
+    p.prime([&](HotProgram& hot) {
       hot.uniform["mul"] = sin(val)/2 + 0.5;
       mesh.sendData();
     });
+    // cnt->execute(p, [&](HotProgram& hot) {
+    //   hot.uniform["mul"] = sin(val)/2 + 0.5;
+    //   mesh.sendData();
+    // });
 
     cnt->swapBuffer();
   }
