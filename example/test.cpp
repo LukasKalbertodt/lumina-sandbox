@@ -63,6 +63,7 @@ void windowTest() {
   auto last = chrono::system_clock::now();
 
   while(win.isValid() && run) {
+	  glClear(GL_COLOR_BUFFER_BIT);
     win.update();
 
     auto now = chrono::system_clock::now();
