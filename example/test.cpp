@@ -40,7 +40,7 @@ void windowTest() {
 
   Mesh mesh(3*3*2);
   
-  mesh.prime<Vec3f, Color32f>([](auto& m) {
+  mesh.prime<Vec3f, Color32f>([](HotMesh<Vec3f, Color32f>& m) {
     m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
     m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
     m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
