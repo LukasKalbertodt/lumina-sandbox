@@ -45,9 +45,13 @@ void windowTest() {
     m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
     m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
     m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
+    m.index[0] = 0;
+    m.index[1] = 1;
+    m.index[2] = 2;
     m.applyVertexLayout();
   });
 
+  auto cube = createBox(Vec3f(1,1,1));
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
