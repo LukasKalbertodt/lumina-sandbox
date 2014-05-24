@@ -6,7 +6,7 @@ CXX := clang++
 LDFLAGS := -Llibs -lglfw3 -lGL -lGLU -lX11 -lXxf86vm -lXi -lXrandr -lGLEW -lpthread
 
 ifeq ($(RELEASE),1)
-  CXXFLAGS += -O3
+	CXXFLAGS += -O3
 else
 	CXXFLAGS += -g
 endif
