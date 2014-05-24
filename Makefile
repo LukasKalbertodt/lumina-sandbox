@@ -3,7 +3,15 @@ EXAMPLE_OUT := $(EXAMPLE_CPP:example/%.cpp=%.bin)
 
 CXXFLAGS := -Wall -std=c++1y -I. -Ilibs/glfw/include
 CXX := clang++
-LDFLAGS := -Llibs -lglfw3 -lGL -lGLU -lX11 -lXxf86vm -lXi -lXrandr -lGLEW -lpthread
+LDFLAGS := -Llibs -lglfw3 -lGLEW -lpthread
+OS := $(shell uname -s)
+
+ifeq ($(OS), Linux)
+	LDFLAGS += -lGL -lGLU -lX11 -lXxf86vm -lXi -lXrandr
+endif
+ifeq ($(OS), Darwin)
+	LDFLAGS += -framework Cocoa -framework OpenGL -framework CoreVideo -framework IOKit
+endif
 
 ifeq ($(RELEASE),1)
 	CXXFLAGS += -O3
