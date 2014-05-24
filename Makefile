@@ -7,7 +7,7 @@ LDFLAGS := -Llibs -lglfw3 -lGLEW -lpthread
 OS := $(shell uname -s)
 
 ifeq ($(OS), Linux)
-	LDFLAGS += -lX11 -lXxf86vm -lXi -lXrandr
+	LDFLAGS += -lGL -lGLU -lX11 -lXxf86vm -lXi -lXrandr
 endif
 ifeq ($(OS), Darwin)
 	LDFLAGS += -framework Cocoa -framework OpenGL -framework CoreVideo -framework IOKit
