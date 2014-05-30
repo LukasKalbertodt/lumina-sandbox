@@ -12,6 +12,24 @@ using namespace std;
 void windowTest();
 
 int main() {
+
+  Image<Color32f> i;
+  i.create(Vec2i(2,4));
+  cout << i.pixelAt(Vec2i(0,0)) << endl;
+  i.pixelAt(Vec2i(1,0)) = Color32f(1.0, 10.5, 0.0);
+  cout << i.pixelAt(Vec2i(1,0)) << endl;
+  cout << i.pixelAt(Vec2i(0,3)) << endl;
+  cout << i.pixelAt(Vec2i(1,3)) << endl;
+
+
+
+
+
+
+
+
+
+
   windowTest();
 }
 
