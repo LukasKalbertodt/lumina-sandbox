@@ -1,5 +1,6 @@
 #include "lumina/lumina.hpp"
 #include "lumina/util/Color.hpp"
+#include "lumina/video/Texture.hpp"
 
 #include <iostream>
 #include <vector>
@@ -13,13 +14,8 @@ void windowTest();
 
 int main() {
 
-  Image<Color32f> i;
-  i.create(Vec2i(2,4));
-  cout << i.pixelAt(Vec2i(0,0)) << endl;
-  i.pixelAt(Vec2i(1,0)) = Color32f(1.0, 10.5, 0.0);
-  cout << i.pixelAt(Vec2i(1,0)) << endl;
-  cout << i.pixelAt(Vec2i(0,3)) << endl;
-  cout << i.pixelAt(Vec2i(1,3)) << endl;
+  
+
 
 
 
@@ -85,6 +81,27 @@ void windowTest() {
   p.create(vs, fs);
   // p.use();
   // p.setUniform("mul", 0.5f);
+
+
+
+  Image<Color32f> i;
+  i.create(Vec2i(2,4));
+  // cout << i.pixelAt(Vec2i(0,0)) << endl;
+  // i.pixelAt(Vec2i(1,0)) = Color32f(1.0, 10.5, 0.0);
+  // cout << i.pixelAt(Vec2i(1,0)) << endl;
+  // cout << i.pixelAt(Vec2i(0,3)) << endl;
+  // cout << i.pixelAt(Vec2i(1,3)) << endl;
+
+  Texture<TexType::Tex2D> tex;
+  tex.create(Vec2i(2,4), TexFormat::RGB32F, i.data());
+
+
+
+
+
+
+
+
 
   auto last = chrono::system_clock::now();
 
