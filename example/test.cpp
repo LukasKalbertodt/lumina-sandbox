@@ -57,9 +57,12 @@ void windowTest() {
     // m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
     // m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
     // m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
-    m.vertex[0].set(Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f));
-    m.vertex[1].set(Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f));
-    m.vertex[2].set(Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f));
+    m.vertex[0].set(Vec3f(-1.f, -1.f, 0.f),
+                    Color32f(1.f, 0.f, 0.f));
+    m.vertex[1].set(Vec3f(1.f, -1.f, 0.f),
+                    Color32f(0.f, 1.f, 0.f));
+    m.vertex[2].set(Vec3f(0.f, 1.f, 0.f),
+                    Color32f(0.f, 0.f, 1.f));
     m.index[0] = 0;
     m.index[1] = 1;
     m.index[2] = 2;
@@ -84,8 +87,14 @@ void windowTest() {
 
 
 
+  Vec2i dim(2,4);
   Image<Color32f> i;
-  i.create(Vec2i(2,4));
+  i.create(dim);
+  // auto it = begin(dim);
+  for(auto it : dim) {
+    i[it] = Color32f(1, 1, 1);
+  }
+  cout << i[Vec2i(1,0)] << endl;
   // cout << i.pixelAt(Vec2i(0,0)) << endl;
   // i.pixelAt(Vec2i(1,0)) = Color32f(1.0, 10.5, 0.0);
   // cout << i.pixelAt(Vec2i(1,0)) << endl;
@@ -93,10 +102,11 @@ void windowTest() {
   // cout << i.pixelAt(Vec2i(1,3)) << endl;
 
   Texture<TexType::Tex2D> tex;
-  tex.create(Vec2i(2,4), TexFormat::RGB32F, i.data());
+  tex.create(dim, TexFormat::RGB32F, i.data());
 
 
-
+  glActiveTexture(GL_TEXTURE0);
+  tex.bindTexture();
 
 
 
@@ -117,7 +127,8 @@ void windowTest() {
       = (chrono::duration_cast<chrono::milliseconds>(diff).count() / 1000.f);
 
     p.prime([&](HotProgram& hot) {
-      hot.uniform["mul"] = sin(val*3)/2 + 0.5;
+      hot.uniform["mul"] = 1;
+      // hot.uniform["mul"] = sin(val*3)/2 + 0.5;
       // mesh.sendData();
       cube.sendData();
     });
