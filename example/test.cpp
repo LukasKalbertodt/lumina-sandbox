@@ -70,7 +70,8 @@ void windowTest() {
   });
 
 
-  auto cube = createBox<VChan::Position, VChan::Normal>(Vec3f(1,1,1)*0.8f);
+  auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
+    Vec3f(1, 1, 1) * 0.8f);
   // auto cube = createBox<VChan::Normal, VChan::Position>(Vec3f(1,1,1));
 
   // Shader tests
@@ -87,23 +88,19 @@ void windowTest() {
 
 
 
-  Vec2i dim(2,4);
+  Vec2i dim(16, 16);
   Image<Color32f> i;
   i.create(dim);
   // auto it = begin(dim);
   for(auto it : dim) {
-    i[it] = Color32f(1, 1, 1);
+    i[it] = Color32f((it.x + it.y) / (dim.x * 2.f),
+                     (it.x == it.y ? 1.f : 0.f),
+                     (it.x == it.y ? 1.f : 0.f));
   }
-  cout << i[Vec2i(1,0)] << endl;
-  // cout << i.pixelAt(Vec2i(0,0)) << endl;
-  // i.pixelAt(Vec2i(1,0)) = Color32f(1.0, 10.5, 0.0);
-  // cout << i.pixelAt(Vec2i(1,0)) << endl;
-  // cout << i.pixelAt(Vec2i(0,3)) << endl;
-  // cout << i.pixelAt(Vec2i(1,3)) << endl;
+  // cout << i[Vec2i(1,0)] << endl;
 
   Texture<TexType::Tex2D> tex;
   tex.create(dim, TexFormat::RGB32F, i.data());
-
 
   glActiveTexture(GL_TEXTURE0);
   tex.bindTexture();
