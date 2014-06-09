@@ -100,7 +100,14 @@ void windowTest() {
   // cout << i[Vec2i(1,0)] << endl;
 
   Texture<TexType::Tex2D> tex;
-  tex.create(dim, TexFormat::RGB32F, i.data());
+  // tex.create(dim, TexFormat::RGB32F, i.data());
+  tex.create(dim, TexFormat::RGB32F);
+
+  tex.prime([&i](HotTexture<TexType::Tex2D>& hot) {
+    hot.param.filterMode = TexFilterMode::Linear;
+    hot.param.wrapMode = TexWrapMode::MirrorRepeat;
+    hot.fill(i.data());
+  });
 
   glActiveTexture(GL_TEXTURE0);
   tex.bindTexture();
