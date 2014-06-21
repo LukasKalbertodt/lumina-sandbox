@@ -1,6 +1,8 @@
 #include "lumina/lumina.hpp"
 #include "lumina/util/Color.hpp"
 #include "lumina/video/Texture.hpp"
+#include "lumina/service/StaticLogger.hpp"
+#include "lumina/io/ImageJPEG.hpp"
 
 #include <iostream>
 #include <vector>
@@ -13,19 +15,6 @@ using namespace std;
 void windowTest();
 
 int main() {
-
-  
-
-
-
-
-
-
-
-
-
-
-
   windowTest();
 }
 
@@ -91,7 +80,6 @@ void windowTest() {
   Vec2i dim(16, 16);
   Image<Color32f> i;
   i.create(dim);
-  // auto it = begin(dim);
   for(auto it : dim) {
     i[it] = Color32f((it.x + it.y) / (dim.x * 2.f),
                      (it.x == it.y ? 1.f : 0.f),
@@ -99,14 +87,18 @@ void windowTest() {
   }
   // cout << i[Vec2i(1,0)] << endl;
 
+  auto pic = loadJPEGImage("gfx/ava.jpg");
+
+  // ImageBox box = i;
+
   Texture<TexType::Tex2D> tex;
   // tex.create(dim, TexFormat::RGB32F, i.data());
-  tex.create(dim, TexFormat::RGB32F);
+  tex.create(pic.dimension(), TexFormat::RGB8);
 
-  tex.prime([&i](HotTexture<TexType::Tex2D>& hot) {
+  tex.prime([&](HotTexture<TexType::Tex2D>& hot) {
     hot.param.filterMode = TexFilterMode::Linear;
     hot.param.wrapMode = TexWrapMode::MirrorRepeat;
-    hot.fill(i.data());
+    hot.fill(pic.data());
   });
 
   glActiveTexture(GL_TEXTURE0);
