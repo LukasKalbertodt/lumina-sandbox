@@ -91,11 +91,11 @@ void windowTest() {
 
   // ImageBox box = i;
 
-  Texture<TexType::Tex2D> tex;
+  Tex2D tex;
   // tex.create(dim, TexFormat::RGB32F, i.data());
   tex.create(pic.dimension(), TexFormat::RGB8);
 
-  tex.prime([&](HotTexture<TexType::Tex2D>& hot) {
+  tex.prime([&](HotTex2D& hot) {
     hot.param.filterMode = TexFilterMode::Linear;
     hot.param.wrapMode = TexWrapMode::MirrorRepeat;
     hot.fill(pic.data());
