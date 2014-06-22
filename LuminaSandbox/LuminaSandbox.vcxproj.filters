@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lumina">
+      <UniqueIdentifier>{cee271dd-07da-4816-a618-68e4265513be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\core">
+      <UniqueIdentifier>{de09d2fc-706e-4d28-a616-d7c36aa9d401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\config">
+      <UniqueIdentifier>{71e26b39-1aac-401d-8660-196a7fd06b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\util">
+      <UniqueIdentifier>{8f6e9132-5772-4d6b-8e41-80fa2b4a4dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\video">
+      <UniqueIdentifier>{abe68634-cc51-4ccb-a4eb-27925903618d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\scene">
+      <UniqueIdentifier>{56ac4862-e59c-4ac2-bb4b-e8f9739960d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\io">
+      <UniqueIdentifier>{4f64c075-ef8a-455b-a570-8ba22078274b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\input">
+      <UniqueIdentifier>{bace5de8-f7e5-49da-91c5-fe157ca9ff9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lumina\service">
+      <UniqueIdentifier>{40f3ee54-f2eb-4582-b611-d679701b4286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example">
+      <UniqueIdentifier>{b2d7dc68-1789-4268-9280-3c0fe2ffc125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{eb204dc1-ba58-4642-b6c4-b981bd036b87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lumina\video\Window.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\video.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\VertexSlot.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\VertexSet.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\VertexLayout.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\VChan.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\UniformSlot.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\UniformSet.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\ShaderSource.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\Shader.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\RenderContext.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\Program.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\PrimitiveType.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\Pipeline.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\Mesh.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\util.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\VariadicTools.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\Vector.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\VectorCore.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\TerminalColor.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\RepCommon.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\NonCopyable.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\MatrixCore.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\Matrix.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\IndexSet.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\HotMesh.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\half.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\Color.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\ColorCore.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\config\BaseProxy.hpp">
+      <Filter>lumina\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\config\ContextProxy.hpp">
+      <Filter>lumina\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\config\LConfig.hpp">
+      <Filter>lumina\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\scene\Geometry.hpp">
+      <Filter>lumina\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\scene\GeometryData.hpp">
+      <Filter>lumina\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\scene\scene.hpp">
+      <Filter>lumina\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\GLTools.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\GLFWTools.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\video\GLException.hpp">
+      <Filter>lumina\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\input\LInputEvent.hpp">
+      <Filter>lumina\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\input\LKeyCode.hpp">
+      <Filter>lumina\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\core\LContextBase.hpp">
+      <Filter>lumina\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\core\LNullBase.hpp">
+      <Filter>lumina\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\core\LuminaException.hpp">
+      <Filter>lumina\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\core\LSingleBase.hpp">
+      <Filter>lumina\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\core\LServiceContext.hpp">
+      <Filter>lumina\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\service\LLogger.hpp">
+      <Filter>lumina\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\service\LServiceProvider.hpp">
+      <Filter>lumina\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\LAlgorithm.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\LPixelFormat.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\util\LTypeConversion.hpp">
+      <Filter>lumina\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lumina\lumina.hpp">
+      <Filter>lumina</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\lumina\video\Window.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\HotMesh.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\HotMesh.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Mesh.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Mesh.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Program.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Program.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\RenderContext.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\RenderContext.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Shader.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\UniformSet.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\VChan.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\VChan.tpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\VertexSlot.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\video\Window.fpp">
+      <Filter>lumina\video</Filter>
+    </None>
+    <None Include="..\lumina\scene\Geometry.tpp">
+      <Filter>lumina\scene</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lumina\video\Mesh.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\Pipeline.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\Program.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\RenderContext.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\Shader.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\ShaderSource.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\UniformSlot.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\video\Window.cpp">
+      <Filter>lumina\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lumina\scene\Geometry.cpp">
+      <Filter>lumina\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\colorTriangle.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\test.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
+    <ClCompile Include="terminalColor.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

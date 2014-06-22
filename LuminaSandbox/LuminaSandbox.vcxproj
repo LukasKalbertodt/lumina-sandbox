@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1D15EA45-35D4-4849-A6D3-E831FE756A7D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>LuminaSandbox</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\libs\win\glfw-3.0.4\include;$(SolutionDir)\..\libs\win\glew-1.10.0\include;libs\win\glew-1.10.0\include;..;.;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\lib\win\glfw-3.0.4\lib-msvc120;$(SolutionDir)\..\lib\win\glew-1.10.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lumina\config\BaseProxy.hpp" />
+    <ClInclude Include="..\lumina\config\ContextProxy.hpp" />
+    <ClInclude Include="..\lumina\config\LConfig.hpp" />
+    <ClInclude Include="..\lumina\core\LContextBase.hpp" />
+    <ClInclude Include="..\lumina\core\LNullBase.hpp" />
+    <ClInclude Include="..\lumina\core\LServiceContext.hpp" />
+    <ClInclude Include="..\lumina\core\LSingleBase.hpp" />
+    <ClInclude Include="..\lumina\core\LuminaException.hpp" />
+    <ClInclude Include="..\lumina\input\LInputEvent.hpp" />
+    <ClInclude Include="..\lumina\input\LKeyCode.hpp" />
+    <ClInclude Include="..\lumina\lumina.hpp" />
+    <ClInclude Include="..\lumina\scene\Geometry.hpp" />
+    <ClInclude Include="..\lumina\scene\GeometryData.hpp" />
+    <ClInclude Include="..\lumina\scene\scene.hpp" />
+    <ClInclude Include="..\lumina\service\LLogger.hpp" />
+    <ClInclude Include="..\lumina\service\LServiceProvider.hpp" />
+    <ClInclude Include="..\lumina\util\Color.hpp" />
+    <ClInclude Include="..\lumina\util\ColorCore.hpp" />
+    <ClInclude Include="..\lumina\util\half.hpp" />
+    <ClInclude Include="..\lumina\util\LAlgorithm.hpp" />
+    <ClInclude Include="..\lumina\util\LPixelFormat.hpp" />
+    <ClInclude Include="..\lumina\util\LTypeConversion.hpp" />
+    <ClInclude Include="..\lumina\util\Matrix.hpp" />
+    <ClInclude Include="..\lumina\util\MatrixCore.hpp" />
+    <ClInclude Include="..\lumina\util\NonCopyable.hpp" />
+    <ClInclude Include="..\lumina\util\RepCommon.hpp" />
+    <ClInclude Include="..\lumina\util\TerminalColor.hpp" />
+    <ClInclude Include="..\lumina\util\util.hpp" />
+    <ClInclude Include="..\lumina\util\VariadicTools.hpp" />
+    <ClInclude Include="..\lumina\util\Vector.hpp" />
+    <ClInclude Include="..\lumina\util\VectorCore.hpp" />
+    <ClInclude Include="..\lumina\video\GLException.hpp" />
+    <ClInclude Include="..\lumina\video\GLFWTools.hpp" />
+    <ClInclude Include="..\lumina\video\GLTools.hpp" />
+    <ClInclude Include="..\lumina\video\HotMesh.hpp" />
+    <ClInclude Include="..\lumina\video\IndexSet.hpp" />
+    <ClInclude Include="..\lumina\video\Mesh.hpp" />
+    <ClInclude Include="..\lumina\video\Pipeline.hpp" />
+    <ClInclude Include="..\lumina\video\PrimitiveType.hpp" />
+    <ClInclude Include="..\lumina\video\Program.hpp" />
+    <ClInclude Include="..\lumina\video\RenderContext.hpp" />
+    <ClInclude Include="..\lumina\video\Shader.hpp" />
+    <ClInclude Include="..\lumina\video\ShaderSource.hpp" />
+    <ClInclude Include="..\lumina\video\UniformSet.hpp" />
+    <ClInclude Include="..\lumina\video\UniformSlot.hpp" />
+    <ClInclude Include="..\lumina\video\VChan.hpp" />
+    <ClInclude Include="..\lumina\video\VertexLayout.hpp" />
+    <ClInclude Include="..\lumina\video\VertexSet.hpp" />
+    <ClInclude Include="..\lumina\video\VertexSlot.hpp" />
+    <ClInclude Include="..\lumina\video\video.hpp" />
+    <ClInclude Include="..\lumina\video\Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\lumina\scene\Geometry.tpp" />
+    <None Include="..\lumina\video\HotMesh.fpp" />
+    <None Include="..\lumina\video\HotMesh.tpp" />
+    <None Include="..\lumina\video\Mesh.fpp" />
+    <None Include="..\lumina\video\Mesh.tpp" />
+    <None Include="..\lumina\video\Program.fpp" />
+    <None Include="..\lumina\video\Program.tpp" />
+    <None Include="..\lumina\video\RenderContext.fpp" />
+    <None Include="..\lumina\video\RenderContext.tpp" />
+    <None Include="..\lumina\video\Shader.fpp" />
+    <None Include="..\lumina\video\UniformSet.fpp" />
+    <None Include="..\lumina\video\VChan.fpp" />
+    <None Include="..\lumina\video\VChan.tpp" />
+    <None Include="..\lumina\video\VertexSlot.fpp" />
+    <None Include="..\lumina\video\Window.fpp" />
+    <None Include="..\lumina\video\Window.tpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\example\colorTriangle.cpp" />
+    <ClCompile Include="..\example\test.cpp" />
+    <ClCompile Include="..\lumina\scene\Geometry.cpp" />
+    <ClCompile Include="..\lumina\video\Mesh.cpp" />
+    <ClCompile Include="..\lumina\video\Pipeline.cpp" />
+    <ClCompile Include="..\lumina\video\Program.cpp" />
+    <ClCompile Include="..\lumina\video\RenderContext.cpp" />
+    <ClCompile Include="..\lumina\video\Shader.cpp" />
+    <ClCompile Include="..\lumina\video\ShaderSource.cpp" />
+    <ClCompile Include="..\lumina\video\UniformSlot.cpp" />
+    <ClCompile Include="..\lumina\video\Window.cpp" />
+    <ClCompile Include="terminalColor.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
