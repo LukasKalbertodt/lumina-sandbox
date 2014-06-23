@@ -60,7 +60,7 @@ void windowTest() {
   Shader<ShaderType::Vertex> vs;
   vs.compile(loadShaderFromFile("shader/test.vsh"));
   Shader<ShaderType::Fragment> fs;
-  fs.compile(loadShaderFromFile("shader/test.fsh"));
+  fs.compile(loadShaderFromFile("shader/pulse.fsh"));
   // PipelineContainer p(vs, fs);
   // p.use();
   Program p;
