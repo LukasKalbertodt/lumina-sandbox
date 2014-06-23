@@ -15,7 +15,7 @@ int main() {
   bool run = true;
 
   // create window with openGL version 3.3
-  LWindow win("Colored triangle with lumina! :3");
+  Window win("Colored triangle with lumina! :3");
   win.setVersionHint(3, 3);
 
   // set run to false if ESC is pressed -> close the program
@@ -41,9 +41,10 @@ int main() {
   // ===========================================================================
   // Create Mesh and shaders
   // ===========================================================================
-  LMesh mesh(3*3*2);
+  Mesh mesh;
+  mesh.create(3*3*2);
   
-  mesh.apply<Vec3f, Color32f>([](auto& m) {
+  mesh.prime<Vec3f, Color32f>([](auto& m) {
     m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
     m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
     m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
@@ -52,13 +53,13 @@ int main() {
   
 
   // create and compile two shaders 
-  LShader<LShaderType::Vertex> vs;
+  Shader<ShaderType::Vertex> vs;
   vs.compile(loadShaderFromFile("shader/test.vsh"));
-  LShader<LShaderType::Fragment> fs;
+  Shader<ShaderType::Fragment> fs;
   fs.compile(loadShaderFromFile("shader/test.fsh"));
 
   // create a pipeline that links the shaders
-  LPipelineContainer p(vs, fs);
+  PipelineContainer p(vs, fs);
   p.use();
 
 
