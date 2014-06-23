@@ -82,7 +82,12 @@ void windowTest() {
       = (chrono::duration_cast<chrono::milliseconds>(diff).count() / 1000.f);
 
     p.prime([&](HotProgram& hot) {
-      hot.uniform["mul"] = sin(val*3)/2 + 0.5;
+      hot.uniform["mul"] = static_cast<float>(sin(val*3)/2 + 0.5);
+      Mat4f mat;
+      mat.setToIdentity();
+      mat.data[0][1] = 1.f;
+      hot.uniform["matrix"] = mat;
+      hot.uniform["tmp"] = Vec3f(0.1, 0.7, 0.4);
       // mesh.sendData();
       cube.sendData();
     });
