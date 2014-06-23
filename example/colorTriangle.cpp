@@ -68,7 +68,7 @@ int main() {
   // Run until ESC is pressed or the window should close
   // ===========================================================================
   while(win.isValid() && run) {
-	  glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
     // update window (poll events...)
     win.update();    
      
