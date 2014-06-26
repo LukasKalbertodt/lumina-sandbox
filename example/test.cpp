@@ -39,6 +39,10 @@ void windowTest() {
   cnt->create();
   cnt->makeCurrent();
 
+  FrameBuffer framebuf;
+  framebuf.create();
+
+
   Mesh mesh;
   mesh.create(3*3*2, 3);
   
