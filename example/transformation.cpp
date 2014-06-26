@@ -101,7 +101,8 @@ void windowTest() {
   cnt->create();
   cnt->makeCurrent();
 
-  auto cube = createBox<VChan::Position, VChan::Normal>(Vec3f(1,1,1)*0.8f);
+  auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
+    Vec3f(1, 1, 1) * 0.8f);
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
@@ -112,6 +113,8 @@ void windowTest() {
   p.create(vs, fs);
 
   //m.setToIdentity();
+
+  glEnable(GL_CULL_FACE);
 
   Mat4f viewingPipeline = viewMatrix(Vec3f(0.f, 0.f, 5.f),
                                      Vec3f(0.f, 0.f, -1.f),
