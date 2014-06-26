@@ -3,7 +3,7 @@ EXAMPLE_OUT := $(EXAMPLE_CPP:example/%.cpp=%.bin)
 
 CXXFLAGS := -Wall -std=c++1y -I. -Ilibs/glfw/include
 CXX := clang++
-LDFLAGS := -Llibs -lglfw3 -lGLEW -lpthread
+LDFLAGS := -Llibs -lglfw3 -lGLEW -lpthread -ljpeg
 OS := $(shell uname -s)
 
 ifeq ($(OS), Linux)
