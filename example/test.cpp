@@ -21,6 +21,9 @@ int main() {
 void windowTest() {
   bool run = true;
 
+  getLoggerService(config::defaultServiceContext);
+  Logger::setGlobalStdLevelFilter(LogLevel::Info);
+
   Window win("Hai :3");
   win.setVersionHint(3, 3);
   win.setVSync(true);
