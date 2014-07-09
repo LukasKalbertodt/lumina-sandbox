@@ -75,7 +75,9 @@ void windowTest() {
   // p.use();
   // p.setUniform("mul", 0.5f);
 
-
+  int maxTex;
+  glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &maxTex);
+  slog(maxTex);
 
   Vec2i dim(16, 16);
   Image<Color32f> i;
