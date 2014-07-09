@@ -75,10 +75,6 @@ void windowTest() {
   // p.use();
   // p.setUniform("mul", 0.5f);
 
-  int maxTex;
-  glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &maxTex);
-  slog(maxTex);
-
   Vec2i dim(16, 16);
   Image<Color32f> i;
   i.create(dim);
@@ -97,14 +93,14 @@ void windowTest() {
   // tex.create(dim, TexFormat::RGB32F, i.data());
   tex.create(pic.dimension(), TexFormat::RGB8);
 
-  tex.prime([&](HotTex2D& hot) {
+  tex.prime(0, [&](HotTex2D& hot) {
     hot.param.filterMode = TexFilterMode::Linear;
     hot.param.wrapMode = TexWrapMode::MirrorRepeat;
     hot.fill(pic.data());
   });
 
-  glActiveTexture(GL_TEXTURE0);
-  tex.bindTexture();
+  // glActiveTexture(GL_TEXTURE0);
+  // tex.bindTexture();
 
 
 
@@ -125,10 +121,12 @@ void windowTest() {
       = (chrono::duration_cast<chrono::milliseconds>(diff).count() / 1000.f);
 
     p.prime([&](HotProgram& hot) {
-      hot.uniform["mul"] = 1.f;
-      // hot.uniform["mul"] = sin(val*3)/2 + 0.5;
-      // mesh.sendData();
-      cube.sendData();
+      tex.prime(0, [&](HotTex2D&) {
+        hot.uniform["mul"] = 1.f;
+        // hot.uniform["mul"] = sin(val*3)/2 + 0.5;
+        // mesh.sendData();
+        cube.sendData();
+      });
     });
     // cnt->execute(p, [&](HotProgram& hot) {
     //   hot.uniform["mul"] = sin(val)/2 + 0.5;
