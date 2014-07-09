@@ -27,7 +27,6 @@ void windowTest() {
   Window win("Hai :3");
   win.setVersionHint(3, 3);
   win.setVSync(true);
-  // win.setVersionHint(1, 1);
   win.addEventCallback([&](const LInputEvent& e) {
     if(e.keyInput.key == LKeyCode::Escape) { 
       run = false; 
@@ -46,10 +45,10 @@ void windowTest() {
   framebuf.create();
 
 
-  Mesh mesh;
+  VertexSeq mesh;
   mesh.create(3*3*2, 3);
   
-  mesh.prime<Vec3f, Color32f>([](HotMesh<Vec3f, Color32f>& m) {
+  mesh.prime<Vec3f, Color32f>([](HotVertexSeq<Vec3f, Color32f>& m) {
     // m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
     // m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
     // m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
@@ -66,9 +65,8 @@ void windowTest() {
   });
 
 
-  auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
-    Vec3f(1, 1, 1) * 0.8f);
-  // auto cube = createBox<VChan::Normal, VChan::Position>(Vec3f(1,1,1));
+  // auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
+  //   Vec3f(1, 1, 1) * 0.8f);
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
@@ -131,8 +129,8 @@ void windowTest() {
       tex.prime(0, [&](HotTex2D&) {
         hot.uniform["mul"] = 1.f;
         // hot.uniform["mul"] = sin(val*3)/2 + 0.5;
-        // mesh.sendData();
-        cube.sendData();
+        mesh.sendData();
+        // cube.sendData();
       });
     });
     // cnt->execute(p, [&](HotProgram& hot) {
