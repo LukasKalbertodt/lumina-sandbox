@@ -128,12 +128,7 @@ void windowTest() {
     p.prime([&](HotProgram& hot) {
       tex.prime(0, [&](HotTex2D&) {
         hot.uniform["mul"] = 1.f;
-        mesh.prime<Vec3f, Color32f>([&](auto& hotMesh) {
-          hot.draw(hotMesh, PrimitiveType::Triangle, 0, 3);
-        });
-        // hot.uniform["mul"] = sin(val*3)/2 + 0.5;
-        // mesh.sendData();
-        // cube.sendData();
+        hot.draw(mesh, PrimitiveType::Triangle, 0, 3);
       });
     });
     // cnt->execute(p, [&](HotProgram& hot) {
