@@ -46,7 +46,7 @@ void windowTest() {
 
 
   VertexSeq mesh;
-  mesh.create(3*3*2, 3);
+  mesh.create(3*2, 3, 3);
   
   mesh.prime<Vec3f, Color32f>([](HotVertexSeq<Vec3f, Color32f>& m) {
     // m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
