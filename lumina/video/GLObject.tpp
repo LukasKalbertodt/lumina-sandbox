@@ -5,8 +5,7 @@ void GLObject::checkGLError(Ts... msgs) {
   auto err = glGetError();
 
   if(err != GL_NO_ERROR) {
-    logError(translateErrorMsg(err, msgs)...);
-    throw GLException(translateErrorMsg(err, msgs)...);
+    logAndThrow<GLException>(translateErrorMsg(err, msgs)...);
   }
 }
 
@@ -18,6 +17,11 @@ void GLObject::checkGLWarning(Ts... msgs) {
     logWarning(translateErrorMsg(err, msgs)...);
   }
 }
+
+template <typename... Ts> void GLObject::logThrowGL(Ts... msgs) {
+  logAndThrow<GLException>(msgs...);
+}
+
 
 template <typename T> 
 T& GLObject::translateErrorMsg(GLuint err, T& obj) {

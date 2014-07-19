@@ -2,6 +2,7 @@
 
 #include "VertexSeq.fpp"
 #include "HotVertexSeq.fpp"
+#include "HotProgram.fpp"
 #include "GLObject.hpp"
 #include "../config/BaseProxy.hpp"
 
@@ -13,7 +14,7 @@
 
 namespace lumina {
 // =============================================================================
-// Definition of VertexSeq and HotMesh
+// Definition of VertexSeq
 // =============================================================================
 /**
 * \brief Represents a geometry mesh
@@ -43,34 +44,36 @@ public:
   // destructor
   ~VertexSeq();
 
-  void create(int vertexCount, int indexCount = 0);
+  void create(uint16_t vertexSize,
+              uint32_t vertexCount,
+              uint32_t indexCount = 0);
   template <typename... Cs, typename L> void prime(L lambda);
 
-  // tmp
-  void sendData();
+  GLuint nativeVertexHandle() const;
+  GLuint nativeIndexHandle() const;
+  GLuint nativeVAOHandle() const;
 
+  int size() const;
+
+  void bindAll();
+  void unbindAll();
+
+  void bindVAO() const;
+  void unbindVAO() const;
 
 private:
   GLuint m_vertexHandle;
   GLuint m_indexHandle;
   GLuint m_vertexArrayObject;
-  std::size_t m_vertexCount;
-  std::size_t m_indexCount;
-  std::size_t m_drawCount;
-  GLenum m_primitiveType;
-
-  std::size_t vertexCount() const;
-  std::size_t indexCount() const;
-  std::size_t vertexSize() const;
-  std::size_t indexSize() const;
-
-  void bindAll();
-  void unbindAll();
+  uint32_t m_vertexCount;
+  uint32_t m_indexCount;
+  uint16_t m_vertexSize;
 
   static bool s_isPrimed;
 
   static void setupOpenGL();
 
+  friend internal::HotVertexSeqBase;
   template <typename... Cs> friend class HotVertexSeq;
 };
 

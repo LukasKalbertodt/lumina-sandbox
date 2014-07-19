@@ -11,19 +11,6 @@ namespace lumina {
 
 bool VertexSeq::s_isPrimed = false;
 
-void VertexSeq::sendData() {
-  bindAll();
-  if(m_indexHandle == 0) {
-    glDrawArrays(m_primitiveType, 0, m_drawCount);
-  }
-  else {
-    glDrawElements(m_primitiveType, m_indexCount, GL_UNSIGNED_INT, nullptr);
-  }
-  unbindAll();
-
-  checkGLError("[VertexSeq] Error<", GLERR, "> while sending VertexSeq data!");
-}
-
 VertexSeq::~VertexSeq() {
   // glDelete* does nothing if second argument is 0
   glDeleteBuffers(1, &m_vertexHandle);
@@ -42,7 +29,9 @@ void VertexSeq::setupOpenGL() {
 }
 
 
-void VertexSeq::create(int vertexCount, int indexCount) {
+void VertexSeq::create(uint16_t vertexSize,
+                       uint32_t vertexCount,
+                       uint32_t indexCount) {
   // check if vertex buffer was already created
   if(m_vertexHandle != 0) {
     logError("[VertexSeq] You can create a VertexSeq only once!");
@@ -58,7 +47,7 @@ void VertexSeq::create(int vertexCount, int indexCount) {
   }
 
   // check arguments
-  if(vertexCount < 1 || indexCount < 0) {
+  if(vertexCount < 1) {
     logError("[VertexSeq] Invalid 'create' arguments: vertexCount<",
              vertexCount, ">, indexCount<", indexCount, ">!");
     throw InvalidArgEx("[VertexSeq] Invalid 'create' arguments");
@@ -66,6 +55,7 @@ void VertexSeq::create(int vertexCount, int indexCount) {
 
   // save arguments
   m_vertexCount = vertexCount;
+  m_vertexSize = vertexSize;
   m_indexCount = indexCount;
 
   // create and bind VAO
@@ -78,7 +68,8 @@ void VertexSeq::create(int vertexCount, int indexCount) {
   // create vertex buffer (generate, bind and allocate memory)
   glGenBuffers(1, &m_vertexHandle);
   glBindBuffer(GL_ARRAY_BUFFER, m_vertexHandle);
-  glBufferData(GL_ARRAY_BUFFER, vertexSize(), nullptr, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertexSize * vertexCount,
+               nullptr, GL_STATIC_DRAW);
 
   checkGLError("[VertexSeq] Error while creating vertex buffer <", GLERR, ">!");
 
@@ -86,7 +77,8 @@ void VertexSeq::create(int vertexCount, int indexCount) {
   if(indexCount > 0) {
     glGenBuffers(1, &m_indexHandle);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexHandle);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize(), nullptr, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * 4,
+                 nullptr, GL_STATIC_DRAW);
 
     checkGLError("[VertexSeq] Error while creating index buffer <", GLERR, ">!");
   }
