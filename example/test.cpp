@@ -22,7 +22,7 @@ void windowTest() {
   bool run = true;
 
   getLoggerService(config::defaultServiceContext);
-  // Logger::setGlobalStdLevelFilter(LogLevel::Info);
+  Logger::setGlobalStdLevelFilter(LogLevel::Info);
 
   Window win("Hai :3");
   win.setVersionHint(3, 3);
@@ -44,29 +44,30 @@ void windowTest() {
   FrameBuffer framebuf;
   framebuf.create();
 
-
   VertexSeq mesh;
-  mesh.create(3*2, 3, 3);
+  mesh.create(3 + 3 + 2, 3);
   
-  mesh.prime<Vec3f, Color32f>([](HotVertexSeq<Vec3f, Color32f>& m) {
-    // m.vertex[0] = Vec3f(-1.f, -1.f, 0.f), Color32f(1.f, 0.f, 0.f);
-    // m.vertex[1] = Vec3f(1.f, -1.f, 0.f), Color32f(0.f, 1.f, 0.f);
-    // m.vertex[2] = Vec3f(0.f, 1.f, 0.f), Color32f(0.f, 0.f, 1.f);
-    m.vertex[0].set(Vec3f(-1.f, -1.f, 0.f),
-                    Color32f(1.f, 0.f, 0.f));
-    m.vertex[1].set(Vec3f(1.f, -1.f, 0.f),
-                    Color32f(0.f, 1.f, 0.f));
-    m.vertex[2].set(Vec3f(0.f, 1.f, 0.f),
-                    Color32f(0.f, 0.f, 1.f));
-    m.index[0] = 0;
-    m.index[1] = 1;
-    m.index[2] = 2;
-    m.applyVertexLayout();
+  // mesh.prime<Vec3f, Color32f>([](HotVertexSeq<Vec3f, Color32f>& m) {
+  //   m.vertex[0].set(Vec3f(-1.f, -1.f, 0.f),
+  //                   Color32f(1.f, 0.f, 0.f));
+  //   m.vertex[1].set(Vec3f(1.f, -1.f, 0.f),
+  //                   Color32f(0.f, 1.f, 0.f));
+  //   m.vertex[2].set(Vec3f(0.f, 1.f, 0.f),
+  //                   Color32f(0.f, 0.f, 1.f));
+  //   m.applyVertexLayout();
+  // });
+
+  mesh.prime([](HotVertexSeq<>& hot) {
+    hot.vertex[0] = {-1.f, -1.f, 0.f, 0.0f, 0.0f, 0.0f,  0.5f,  0.5f};
+    hot.vertex[1] = { 1.f, -1.f, 0.f, 0.0f, 0.0f, 0.0f, -0.5f,  0.5f};
+    hot.vertex[2] = { 0.f,  1.f, 0.f, 0.0f, 0.0f, 0.0f,  0.5f, -0.5f};
+
+    hot.applyVertexLayout<Vec3f, Vec3f, Vec2f>();
   });
 
 
-  // auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
-  //   Vec3f(1, 1, 1) * 0.8f);
+  auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
+    Vec3f(1, 1, 1) * 0.8f);
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
@@ -126,9 +127,11 @@ void windowTest() {
       = (chrono::duration_cast<chrono::milliseconds>(diff).count() / 1000.f);
 
     p.prime([&](HotProgram& hot) {
+      hot.uniform["mul"] = 1.f;
+      
       tex.prime(0, [&](HotTex2D&) {
-        hot.uniform["mul"] = 1.f;
         hot.draw(mesh, PrimitiveType::Triangle);
+        hot.draw(cube, PrimitiveType::TriangleStrip);
       });
     });
     // cnt->execute(p, [&](HotProgram& hot) {
