@@ -22,7 +22,7 @@ void windowTest() {
   bool run = true;
 
   getLoggerService(config::defaultServiceContext);
-  Logger::setGlobalStdLevelFilter(LogLevel::Info);
+  // Logger::setGlobalStdLevelFilter(LogLevel::Info);
 
   Window win("Hai :3");
   win.setVersionHint(3, 3);
@@ -128,7 +128,7 @@ void windowTest() {
     p.prime([&](HotProgram& hot) {
       tex.prime(0, [&](HotTex2D&) {
         hot.uniform["mul"] = 1.f;
-        hot.draw(mesh, PrimitiveType::Triangle, 0, 3);
+        hot.draw(mesh, PrimitiveType::Triangle);
       });
     });
     // cnt->execute(p, [&](HotProgram& hot) {
