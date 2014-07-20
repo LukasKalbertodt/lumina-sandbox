@@ -23,7 +23,7 @@ void windowTest() {
   bool run = true;
 
   getLoggerService(config::defaultServiceContext);
-  // Logger::setGlobalStdLevelFilter(LogLevel::Info);
+  Logger::setGlobalStdLevelFilter(LogLevel::Info);
 
   Window win("Hai :3");
   win.setVersionHint(3, 3);
@@ -44,6 +44,15 @@ void windowTest() {
 
   FrameBuffer framebuf;
   framebuf.create();
+
+  auto winSize = win.getSize();
+  Tex2D drawTex;
+  drawTex.create(winSize, TexFormat::RGB8);
+  // drawTex.prime(1, [](HotTex2D& hot) {
+    // hot.param.filterMode = TexFilterMode::Nearest;
+  // });
+  // framebuf.colors[0] = drawTex;
+  framebuf.attachColor(0, drawTex);
 
   VertexSeq mesh;
   mesh.create(3 + 3 + 2, 3);
@@ -68,7 +77,7 @@ void windowTest() {
 
 
   auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
-    Vec3f(1, 1, 1) * 0.8f);
+    Vec3f(1, 1, 1) * 0.8);
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
@@ -102,19 +111,37 @@ void windowTest() {
 
   // glEnable(GL_CULL_FACE);
 
-  tex.prime(0, [&](HotTex2D& hotTex) {
-    TexCont cont(hotTex);
+  
 
-    while(win.isValid() && run) {
-      glClear(GL_COLOR_BUFFER_BIT);
-      win.update();
+  while(win.isValid() && run) {
+    win.update();
 
-      p.prime([&](HotProgram& hot) {        
+    framebuf.prime([&](HotFrameBuffer& hotFrame) {
+      // hotFrame.colors[0].clear(Color32A());
+      hotFrame.clearColor(0, Color32fA(1.0f, 0, 0));
+      tex.prime(0, [&](HotTex2D& hotTex) {
+        TexCont cont(hotTex);
+        // glClear(GL_COLOR_BUFFER_BIT);
+
+        p.prime([&](HotProgram& hot) {        
           hot.draw(cont, mesh, PrimitiveType::Triangle);
-          hot.draw(cont, cube, PrimitiveType::TriangleStrip);
+        });
       });
+    });
 
-      cnt->swapBuffer();
-    }
-  });
+    cnt->getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
+      hotFrame.clearColor(0, Color32fA(0, 1.0, 0));
+      drawTex.prime(0, [&](HotTex2D& hotTex) {
+        TexCont cont(hotTex);
+        // glClear(GL_COLOR_BUFFER_BIT);
+
+        p.prime([&](HotProgram& hot) {
+          // hot.draw(cont, mesh, PrimitiveType::Triangle);
+          hot.draw(cont, cube, PrimitiveType::TriangleStrip);
+        });
+      });
+    });
+
+    cnt->swapBuffer();
+  }
 }
