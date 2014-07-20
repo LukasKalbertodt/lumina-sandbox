@@ -51,7 +51,8 @@ void windowTest() {
   // drawTex.prime(1, [](HotTex2D& hot) {
   //   hot.param.filterMode = TexFilterMode::Nearest;
   // });
-  framebuf.colors[0] = drawTex;
+  // framebuf.colors[0] = drawTex;
+  framebuf.attachColor(0, drawTex);
 
   VertexSeq mesh;
   mesh.create(3 + 3 + 2, 3);
@@ -116,7 +117,7 @@ void windowTest() {
     win.update();
 
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
-      hotFrame.colors[0].clear(Color32A());
+      // hotFrame.colors[0].clear(Color32A());
       tex.prime(0, [&](HotTex2D& hotTex) {
         TexCont cont(hotTex);
         glClear(GL_COLOR_BUFFER_BIT);
