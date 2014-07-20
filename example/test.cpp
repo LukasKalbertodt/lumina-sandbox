@@ -49,7 +49,7 @@ void windowTest() {
   Tex2D drawTex;
   drawTex.create(winSize, TexFormat::RGB8);
   // drawTex.prime(1, [](HotTex2D& hot) {
-  //   hot.param.filterMode = TexFilterMode::Nearest;
+    // hot.param.filterMode = TexFilterMode::Nearest;
   // });
   // framebuf.colors[0] = drawTex;
   framebuf.attachColor(0, drawTex);
