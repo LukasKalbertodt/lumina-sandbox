@@ -125,18 +125,18 @@ void windowTest() {
         p.prime([&](HotProgram& hot) {        
           hot.draw(cont, mesh, PrimitiveType::Triangle);
         });
-
       });
     });
 
-    
-    drawTex.prime(0, [&](HotTex2D& hotTex) {
-      TexCont cont(hotTex);
-      glClear(GL_COLOR_BUFFER_BIT);
+    cnt->getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
+      drawTex.prime(0, [&](HotTex2D& hotTex) {
+        TexCont cont(hotTex);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-      p.prime([&](HotProgram& hot) {
-        // hot.draw(cont, mesh, PrimitiveType::Triangle);
-        hot.draw(cont, cube, PrimitiveType::TriangleStrip);
+        p.prime([&](HotProgram& hot) {
+          // hot.draw(cont, mesh, PrimitiveType::Triangle);
+          hot.draw(cont, cube, PrimitiveType::TriangleStrip);
+        });
       });
     });
 
