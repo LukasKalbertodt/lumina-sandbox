@@ -129,6 +129,7 @@ void windowTest() {
       });
     });
 
+    
     drawTex.prime(0, [&](HotTex2D& hotTex) {
       TexCont cont(hotTex);
       glClear(GL_COLOR_BUFFER_BIT);
