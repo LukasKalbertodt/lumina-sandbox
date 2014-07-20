@@ -77,7 +77,7 @@ void windowTest() {
 
 
   auto cube = createBox<VChan::Position, VChan::Normal, VChan::TexUV>(
-    Vec3f(1, 1, 1));
+    Vec3f(1, 1, 1) * 0.8);
 
   // Shader tests
   Shader<ShaderType::Vertex> vs;
@@ -118,9 +118,10 @@ void windowTest() {
 
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
       // hotFrame.colors[0].clear(Color32A());
+      hotFrame.clearColor(0, Color32fA(1.0f, 0, 0));
       tex.prime(0, [&](HotTex2D& hotTex) {
         TexCont cont(hotTex);
-        glClear(GL_COLOR_BUFFER_BIT);
+        // glClear(GL_COLOR_BUFFER_BIT);
 
         p.prime([&](HotProgram& hot) {        
           hot.draw(cont, mesh, PrimitiveType::Triangle);
@@ -129,9 +130,10 @@ void windowTest() {
     });
 
     cnt->getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
+      hotFrame.clearColor(0, Color32fA(0, 1.0, 0));
       drawTex.prime(0, [&](HotTex2D& hotTex) {
         TexCont cont(hotTex);
-        glClear(GL_COLOR_BUFFER_BIT);
+        // glClear(GL_COLOR_BUFFER_BIT);
 
         p.prime([&](HotProgram& hot) {
           // hot.draw(cont, mesh, PrimitiveType::Triangle);
