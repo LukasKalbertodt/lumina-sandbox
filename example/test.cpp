@@ -13,41 +13,64 @@
 using namespace lumina;
 using namespace std;
 
-void windowTest();
+
+class Test {
+private:
+  bool m_gameRunning;
+  Window m_win;
+
+  void execute(HotRenderContext& cnt);
+
+public:
+  Test();
+
+  void run();
+};
+
 
 int main() {
-  windowTest();
+  Test t;
+  t.run();
 }
 
-void windowTest() {
-  bool run = true;
-
+Test::Test()
+  : m_gameRunning(true), m_win("Hai :3") {
+  // configure log service and start timer
   getLoggerService(config::defaultServiceContext);
   Logger::setGlobalStdLevelFilter(LogLevel::Info);
 
-  Window win("Hai :3");
-  win.setVersionHint(3, 3);
-  win.setVSync(true);
-  win.addEventCallback([&](const LInputEvent& e) {
+  // configure window
+  m_win.setVersionHint(3, 3);
+  m_win.setVSync(true);
+
+  // register event handler
+  m_win.addEventCallback([&](const LInputEvent& e) {
     if(e.keyInput.key == LKeyCode::Escape) { 
-      run = false; 
+      m_gameRunning = false; 
       return LEventResult::Processed;
     }
     return LEventResult::Skipped;
   });
-  win.open();
-  win.setVSync(true);
+}
 
-  auto cnt = win.getRenderContext();
-  cnt->create();
-  cnt->makeCurrent();
+void Test::run() {
+  // open window
+  m_win.open();
 
+  // obtain render context and use it to run the game
+  auto& cnt = m_win.getRenderContext();
+  cnt.create();
+  cnt.prime([this](HotRenderContext& hot) { 
+    this->execute(hot);
+  });
+}
+
+void Test::execute(HotRenderContext& cnt) {
   FrameBuffer framebuf;
   framebuf.create();
 
-  auto winSize = win.getSize();
   Tex2D drawTex;
-  drawTex.create(winSize, TexFormat::RGB8);
+  drawTex.create(m_win.getSize(), TexFormat::RGB8);
   // drawTex.prime(1, [](HotTex2D& hot) {
     // hot.param.filterMode = TexFilterMode::Nearest;
   // });
@@ -113,8 +136,8 @@ void windowTest() {
 
   
 
-  while(win.isValid() && run) {
-    win.update();
+  while(m_win.isValid() && m_gameRunning) {
+    m_win.update();
 
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
       // hotFrame.colors[0].clear(Color32A());
@@ -129,7 +152,7 @@ void windowTest() {
       });
     });
 
-    cnt->getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
+    cnt.getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
       hotFrame.clearColor(0, Color32fA(0, 1.0, 0));
       drawTex.prime(0, [&](HotTex2D& hotTex) {
         TexCont cont(hotTex);
@@ -142,6 +165,6 @@ void windowTest() {
       });
     });
 
-    cnt->swapBuffer();
+    cnt.swapBuffer();
   }
 }
