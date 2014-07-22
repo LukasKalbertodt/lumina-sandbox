@@ -44,12 +44,12 @@ Test::Test()
   m_win.setVSync(true);
 
   // register event handler
-  m_win.addEventCallback([&](const LInputEvent& e) {
-    if(e.keyInput.key == LKeyCode::Escape) { 
+  m_win.addEventCallback([&](const InputEvent& e) {
+    if(e.keyInput.key == KeyCode::Escape) { 
       m_gameRunning = false; 
-      return LEventResult::Processed;
+      return EventResult::Processed;
     }
-    return LEventResult::Skipped;
+    return EventResult::Skipped;
   });
 }
 
