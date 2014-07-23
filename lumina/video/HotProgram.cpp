@@ -8,9 +8,6 @@ using namespace std;
 
 namespace lumina {
 
-bool HotProgram::s_isPrimed = false;
-
-
 void HotProgram::draw(const TexCont& texCont,
                       const VertexSeq& data,
                       PrimitiveType type,
@@ -36,12 +33,9 @@ void HotProgram::draw(const TexCont& texCont,
   }
   else {
     glDrawElements(primitiveType, count, GL_UNSIGNED_INT,
-                   reinterpret_cast<void*>(4 * offset));
+                   reinterpret_cast<void*>(sizeof(GLuint) * offset));
   }
   data.unbindVAO();
 }
 
-
-
-
-}
+} // namespace lumina

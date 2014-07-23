@@ -101,6 +101,8 @@ void Test::execute(HotRenderContext& cnt) {
 
   Program p;
   p.create(vs, fs);
+  p.primitiveProc.enableCulling();
+  p.primitiveProc.setCullFace(CullFace::Back);
 
 
   // load a picture from file and create a texture of it

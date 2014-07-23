@@ -4,6 +4,8 @@
 #include "HotProgram.fpp"
 #include "RenderContext.fpp"
 #include "Shader.hpp"
+#include "PrimitiveProcessing.hpp"
+#include "PerFragmentProcessing.hpp"
 #include "../config/BaseProxy.hpp"
 
 #include <GL/glew.h>
@@ -20,8 +22,11 @@ public:
   void create(VShader& vs, FShader& fs);
   void prime(std::function<void(HotProgram&)> func);
 
+  PrimitiveProcessing primitiveProc;
+  PerFragmentProcessing perFragProc;
+
 protected:
-  Program(Program& ref);
+  static bool s_isPrimed;
 
   GLuint m_handle;
 
