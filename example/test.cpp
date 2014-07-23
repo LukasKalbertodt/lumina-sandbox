@@ -127,7 +127,7 @@ void Test::execute(HotRenderContext& cnt) {
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
       hotFrame.clearColor(0, Color32fA(1.0f, 0, 0));
       tex.prime(0, [&](HotTex2D& hotTex) {
-        TexCont cont(hotTex);
+        HotTexCont cont(hotTex);
 
         p.prime([&](HotProgram& hot) {        
           hot.draw(cont, triangle, PrimitiveType::Triangle);
@@ -139,7 +139,7 @@ void Test::execute(HotRenderContext& cnt) {
     cnt.getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
       hotFrame.clearColor(0, Color32fA(0, 1.0, 0));
       drawTex.prime(0, [&](HotTex2D& hotTex) {
-        TexCont cont(hotTex);
+        HotTexCont cont(hotTex);
 
         p.prime([&](HotProgram& hot) {
           hot.draw(cont, cube, PrimitiveType::TriangleStrip);
