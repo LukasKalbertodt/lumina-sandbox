@@ -128,13 +128,22 @@ void Test::execute(HotRenderContext& cnt) {
     // draw the first pass
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
       hotFrame.clearColor(0, Color32fA(1.0f, 0, 0));
-      tex.prime(0, [&](HotTex2D& hotTex) {
-        HotTexCont cont(hotTex);
+      TexCont container;
+      container.addTexture(0, tex);
 
+      container.prime([&](HotTexCont& hotCont){
         p.prime([&](HotProgram& hot) {        
-          hot.draw(cont, triangle, PrimitiveType::Triangle);
+          hot.draw(hotCont, triangle, PrimitiveType::Triangle);
         });
       });
+
+      // tex.prime(0, [&](HotTex2D& hotTex) {
+      //   HotTexCont cont(hotTex);
+
+      //   p.prime([&](HotProgram& hot) {        
+      //     hot.draw(cont, triangle, PrimitiveType::Triangle);
+      //   });
+      // });
     });
 
     // draw second pass
