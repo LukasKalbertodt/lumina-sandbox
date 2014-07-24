@@ -37,7 +37,7 @@ Test::Test()
   : m_gameRunning(true), m_win("Hai :3") {
   // configure log service and start timer
   getLoggerService(config::defaultServiceContext);
-  Logger::setGlobalStdLevelFilter(LogLevel::Info);
+  // Logger::setGlobalStdLevelFilter(LogLevel::Info);
 
   // configure window
   m_win.setVersionHint(3, 3);
@@ -74,6 +74,7 @@ void Test::execute(HotRenderContext& cnt) {
   // create a texture of the size of the window and attach it to the framebuffer
   Tex2D drawTex;
   drawTex.create(m_win.getSize(), TexFormat::RGB8);
+  // drawTex.params
   framebuf.attachColor(0, drawTex);
 
 
@@ -111,9 +112,10 @@ void Test::execute(HotRenderContext& cnt) {
   Tex2D tex;
   tex.create(pic.dimension(), TexFormat::RGB8);
 
+  tex.params.filterMode = TexFilterMode::Linear;
+  tex.params.wrapMode = TexWrapMode::MirrorRepeat;
+  tex.params.useMipMaps = true;
   tex.prime(0, [&](HotTex2D& hot) {
-    hot.param.filterMode = TexFilterMode::Linear;
-    hot.param.wrapMode = TexWrapMode::MirrorRepeat;
     hot.fill(pic.data());
   });
 
