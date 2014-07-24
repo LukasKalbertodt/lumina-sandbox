@@ -45,12 +45,20 @@ Test::Test()
 
   // register event handler
   m_win.addEventCallback([&](const InputEvent& e) {
-    if(e.keyInput.key == KeyCode::Escape) { 
+    if(e.type == InputType::Key && e.keyInput.key == KeyCode::Escape) { 
       m_gameRunning = false; 
       return EventResult::Processed;
     }
     if(e.type == InputType::Mouse) {
-      slog("x: ", e.mouseInput.x, " \ty:", e.mouseInput.y);
+      slogDebug("x: ", e.mouseInput.x, " \ty:", e.mouseInput.y);
+      if(e.mouseInput.type == MouseInputType::LButtonPressed) {
+        m_win.setCursorMode(CursorMode::Free);
+        slogNotice("Set to free!");
+      }
+      else if(e.mouseInput.type == MouseInputType::LButtonReleased) {
+        m_win.setCursorMode(CursorMode::Normal);
+        slogNotice("Set to normal!");
+      }
     }
     return EventResult::Skipped;
   });
