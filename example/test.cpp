@@ -49,6 +49,9 @@ Test::Test()
       m_gameRunning = false; 
       return EventResult::Processed;
     }
+    if(e.type == InputType::Mouse) {
+      slog("x: ", e.mouseInput.x, " \ty:", e.mouseInput.y);
+    }
     return EventResult::Skipped;
   });
 }
