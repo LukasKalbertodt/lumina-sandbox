@@ -59,6 +59,9 @@ Test::Test()
         m_win.setCursorMode(CursorMode::Normal);
         slog("Set to normal!");
       }
+      else if(e.mouseInput.type == MouseInputType::Scroll) {
+        slog("x: ", e.mouseInput.scrollX, " \ty: ", e.mouseInput.scrollY);
+      }
     }
     return EventResult::Skipped;
   });
