@@ -99,15 +99,19 @@ void Test::execute(HotRenderContext& cnt) {
   // drawTex.params
   framebuf.attachColor(0, drawTex);
 
+  Tex2D depthTex;
+  depthTex.create(m_win.getSize(), TexFormat::D32);
+  framebuf.attachDepth(depthTex);
+
 
   // create a VertexSeq and fill it with data to represent a triangle
   VertexSeq triangle;
   triangle.create(3 + 3 + 2, 3);
 
   triangle.prime([](HotVertexSeq<>& hot) {
-    hot.vertex[0] = {-1.f, -1.f, 0.f, 0.0f, 0.0f, 0.0f,  0.5f,  0.5f};
-    hot.vertex[1] = { 1.f, -1.f, 0.f, 0.0f, 0.0f, 0.0f, -0.5f,  0.5f};
-    hot.vertex[2] = { 0.f,  1.f, 0.f, 0.0f, 0.0f, 0.0f,  0.5f, -0.5f};
+    hot.vertex[0] = {-1.f, -1.f, 1.f,  0.0f, 0.0f, 0.0f,  0.5f,  0.5f};
+    hot.vertex[1] = { 1.f, -1.f, -1.f, 0.0f, 0.0f, 0.0f, -0.5f,  0.5f};
+    hot.vertex[2] = { 0.f,  1.f, 0.f,  0.0f, 0.0f, 0.0f,  0.5f, -0.5f};
 
     hot.applyVertexLayout<Vec3f, Vec3f, Vec2f>();
   });
@@ -141,6 +145,9 @@ void Test::execute(HotRenderContext& cnt) {
     hot.fill(pic.data());
   });
 
+  p.perFragProc.enableDepthTest();
+  p.perFragProc.setDepthFunction(DepthFunction::Less);
+
 
   // loop until the game is stopped
   while(m_win.isValid() && m_gameRunning) {
@@ -150,6 +157,7 @@ void Test::execute(HotRenderContext& cnt) {
     // draw the first pass
     framebuf.prime([&](HotFrameBuffer& hotFrame) {
       hotFrame.clearColor(0, Color32fA(1.0f, 0, 0));
+      hotFrame.clearDepth(1.f);
       TexCont container;
       container.addTexture(0, tex);
 
@@ -171,7 +179,8 @@ void Test::execute(HotRenderContext& cnt) {
     // draw second pass
     cnt.getDefaultFrameBuffer().prime([&](HotFrameBuffer& hotFrame){
       hotFrame.clearColor(0, Color32fA(0, 1.0, 0));
-      drawTex.prime(0, [&](HotTex2D& hotTex) {
+      hotFrame.clearDepth(1.f);
+      depthTex.prime(0, [&](HotTex2D& hotTex) {
         HotTexCont cont(hotTex);
 
         p.prime([&](HotProgram& hot) {
