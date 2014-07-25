@@ -65,6 +65,14 @@ Test::Test()
     }
     return EventResult::Skipped;
   });
+
+  m_win.addWindowCallback([](WindowEvent e) {
+    if(e.type == WindowEventType::Close) {
+      cout << "Bye :'(" << endl;
+      return EventResult::Processed;
+    }
+    return EventResult::Skipped;
+  });
 }
 
 void Test::run() {
